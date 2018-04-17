@@ -13,17 +13,14 @@ import java.util.Calendar;
  */
 public class Selling {
 
+    private Integer id;
+    
     private Calendar date;
 
     private String client;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Selling() {
-    }
-
-    public Selling(Selling selling) {
-        this.date = selling.date;
-        this.client = selling.client;
     }
 
     public Selling(Calendar date, String client) {
@@ -39,6 +36,14 @@ public class Selling {
 
     public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getClient() {

@@ -15,9 +15,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ArticleDataManager extends AbstractDataManager<Article> {
 
+    private Integer nextId = 1;
+
     @Override
-    protected Article getNewInstance(Article object) {
-        return new Article(object);
+    protected synchronized void generateId(Article object) {
+        object.setId(nextId++);
     }
 
 }

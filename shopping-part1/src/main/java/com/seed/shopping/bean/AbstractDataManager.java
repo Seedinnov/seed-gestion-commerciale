@@ -15,7 +15,7 @@ import java.util.List;
  */
 public abstract class AbstractDataManager<T> {
 
-    private final List<T> objects = new ArrayList<>();
+    protected final List<T> objects = new ArrayList<>();
 
     /**
      * Enregistre une nouvelle entrée de l'objet passé en paramètre dans la
@@ -24,7 +24,8 @@ public abstract class AbstractDataManager<T> {
      * @param object entrée à enregistrer
      */
     public void create(T object) {
-        objects.add(getNewInstance(object));
+        generateId(object);
+        objects.add(object);
     }
 
     /**
@@ -34,19 +35,10 @@ public abstract class AbstractDataManager<T> {
      */
     public List<T> findAll() {
         List<T> result = new ArrayList<>();
-        objects.forEach((obj) -> {
-            result.add(getNewInstance(obj));
-        });
+        result.addAll(objects);
         return result;
     }
 
-    /**
-     * Fourni une nouvelle instance de l'objet comprenant exactement les mêmes
-     * données. Implémentation manuelle du clone.
-     *
-     * @param object
-     * @return
-     */
-    protected abstract T getNewInstance(T object);
+    protected abstract void generateId(T object);
 
 }

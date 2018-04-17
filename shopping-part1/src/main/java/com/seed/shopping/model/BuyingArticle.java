@@ -11,6 +11,8 @@ package com.seed.shopping.model;
  */
 public class BuyingArticle {
 
+    private Long id;
+
     private Buying buying;
 
     private Article article;
@@ -19,12 +21,6 @@ public class BuyingArticle {
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public BuyingArticle() {
-    }
-
-    public BuyingArticle(BuyingArticle src) {
-        this.quantity = src.quantity;
-        this.buying = new Buying(src.buying);
-        this.article = new Article(src.article);
     }
 
     public BuyingArticle(Buying buying, Article article, Integer quantity) {
@@ -49,6 +45,14 @@ public class BuyingArticle {
 
     public void setArticle(Article article) {
         this.article = article;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getQuantity() {

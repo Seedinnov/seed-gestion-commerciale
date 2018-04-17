@@ -15,9 +15,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class BuyingDataManager extends AbstractDataManager<Buying> {
 
+    private Integer nextId = 1;
+
     @Override
-    protected Buying getNewInstance(Buying object) {
-        return new Buying(object);
+    protected synchronized void generateId(Buying object) {
+        object.setId(nextId++);
     }
 
 }

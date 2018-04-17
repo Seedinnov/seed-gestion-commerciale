@@ -13,17 +13,14 @@ import java.util.Calendar;
  */
 public class Buying {
 
+    private Integer id;
+    
     private Calendar date;
 
     private String provider;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Buying() {
-    }
-
-    public Buying(Buying buying) {
-        this.date = buying.date;
-        this.provider = buying.provider;
     }
 
     public Buying(Calendar date, String provider) {
@@ -39,6 +36,14 @@ public class Buying {
 
     public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getProvider() {

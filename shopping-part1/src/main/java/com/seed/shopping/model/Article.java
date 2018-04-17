@@ -11,6 +11,8 @@ package com.seed.shopping.model;
  */
 public class Article {
 
+    private Integer id;
+
     private String name;
 
     private Double buyingPrise;
@@ -21,13 +23,6 @@ public class Article {
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Article() {
-    }
-
-    public Article(Article article) {
-        this.name = article.name;
-        this.buyingPrise = article.buyingPrise;
-        this.sellingPrise = article.sellingPrise;
-        this.remainingQuantity = article.remainingQuantity;
     }
 
     public Article(String name, Double buyingPrise, Double sellingPrise) {
@@ -60,6 +55,14 @@ public class Article {
 
     public void setSellingPrise(Double sellingPrise) {
         this.sellingPrise = sellingPrise;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getRemainingQuantity() {
