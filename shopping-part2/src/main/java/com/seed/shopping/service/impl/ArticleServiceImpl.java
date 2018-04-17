@@ -67,6 +67,9 @@ public class ArticleServiceImpl implements ArticleService {
         if (article == null) {
             throw new IllegalArgumentException("Aucun article avec pour ID " + articleId);
         }
+        if (addedValue < 0 && addedValue + article.getRemainingQuantity() < 0) {
+            throw new IllegalArgumentException("Opération impossible: Le stock actuel est inférieur à la demande");
+        }
         article.setRemainingQuantity(article.getRemainingQuantity() + addedValue);
         articleDataManager.edit(article);
         return article.getRemainingQuantity();
