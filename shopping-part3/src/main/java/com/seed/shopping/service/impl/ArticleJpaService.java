@@ -5,11 +5,12 @@
  */
 package com.seed.shopping.service.impl;
 
-import com.seed.shopping.bean.ArticleDataManager;
 import com.seed.shopping.model.Article;
+import com.seed.shopping.repo.ArticleRepository;
 import com.seed.shopping.service.impl.logic.AbstractArticleService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,34 +18,35 @@ import org.springframework.stereotype.Service;
  * @author <a href="mailto:tiayo.pro@gmail.com">Ulrich TIAYO NGNINGAHE</a>
  */
 @Service
-public class ArticleServiceImpl extends AbstractArticleService {
+@Primary
+public class ArticleJpaService extends AbstractArticleService {
 
     @Autowired
-    private ArticleDataManager articleDataManager;
+    private ArticleRepository articleRepository;
 
     @Override
     public List<Article> findAll() {
-        return articleDataManager.findAll();
+        return articleRepository.findAll();
     }
 
     @Override
     public void edit(Article article) {
-        articleDataManager.edit(article);
+        articleRepository.save(article);
     }
 
     @Override
     public void create(Article article) {
-        articleDataManager.create(article);
+        articleRepository.save(article);
     }
 
     @Override
     public Article findById(Integer articleId) {
-        return articleDataManager.findById(articleId);
+        return articleRepository.findOne(articleId);
     }
 
     @Override
     public List<Article> findByName(String name) {
-        return articleDataManager.findByName(name);
+        return articleRepository.findByName(name);
     }
 
 }

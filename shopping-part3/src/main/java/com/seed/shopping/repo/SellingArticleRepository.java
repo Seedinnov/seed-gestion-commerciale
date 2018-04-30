@@ -6,12 +6,17 @@
 package com.seed.shopping.repo;
 
 import com.seed.shopping.model.SellingArticle;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
  * @author <a href="mailto:tiayo.pro@gmail.com">Ulrich TIAYO NGNINGAHE</a>
  */
-public interface SellingArticleRepository extends JpaRepository<SellingArticle, Long>{
-    
+public interface SellingArticleRepository extends JpaRepository<SellingArticle, Long> {
+
+    @Query("SELECT sa FROM SellingArticle sa WHERE sa.selling.id = ?1")
+    List<SellingArticle> findArticlesBySellingId(Integer sellingId);
+
 }
