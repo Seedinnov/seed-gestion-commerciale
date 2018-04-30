@@ -17,6 +17,7 @@
         <module>shopping-part1</module>
         <module>shopping-part2</module>
         <module>shopping-part3</module>
+        <module>shopping-web</module>
     </modules>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
