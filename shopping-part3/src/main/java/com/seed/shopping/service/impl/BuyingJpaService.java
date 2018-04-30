@@ -5,46 +5,60 @@
  */
 package com.seed.shopping.service.impl;
 
-import com.seed.shopping.bean.BuyingArticleDataManager;
-import com.seed.shopping.bean.BuyingDataManager;
 import com.seed.shopping.model.Buying;
 import com.seed.shopping.model.BuyingArticle;
-import com.seed.shopping.service.contract.ArticleService;
+import com.seed.shopping.repo.BuyingArticleRepository;
+import com.seed.shopping.repo.BuyingRepository;
 import com.seed.shopping.service.impl.logic.AbstractBuyingService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author <a href="mailto:tiayo.pro@gmail.com">Ulrich TIAYO NGNINGAHE</a>
  */
 @Service
-public class BuyingServiceImpl extends AbstractBuyingService {
+@Primary
+public class BuyingJpaService extends AbstractBuyingService {
 
     @Autowired
-    private BuyingDataManager buyingDataManager;
+    private BuyingRepository buyingRepository;
     @Autowired
-    private BuyingArticleDataManager buyingArticleDataManager;
+    private BuyingArticleRepository buyingArticleRepository;
 
     @Override
     public List<Buying> findAll() {
-        return buyingDataManager.findAll();
+        return buyingRepository.findAll();
     }
 
     @Override
     public void create(Buying buying) {
-        buyingDataManager.create(buying);
+        buyingRepository.save(buying);
     }
 
     @Override
     public void create(BuyingArticle buyingArticle) {
-        buyingArticleDataManager.create(buyingArticle);
+        buyingArticleRepository.save(buyingArticle);
     }
 
     @Override
     public List<BuyingArticle> findArticlesByBuying(Buying buying) {
-        return buyingArticleDataManager.findArticlesByBuying(buying);
+        return buyingArticleRepository.findArticlesByBuyingId(buying.getId());
+    }
+
+    /**
+     * Cette redéfinition permet d'encapsuler toutes les opérations en base de
+     * données de cette fonction dans une unique transaction
+     *
+     * @param articles
+     */
+    @Override
+    @Transactional
+    public void saveBuying(List<BuyingArticle> articles) {
+        super.saveBuying(articles);
     }
 
 }
