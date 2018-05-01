@@ -5,11 +5,16 @@
  */
 package com.seed.shopping.web.ctrl;
 
+import com.seed.shopping.model.Article;
 import com.seed.shopping.service.contract.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -24,7 +29,14 @@ public class ArticleCtrl {
     @GetMapping("/article")
     public String greeting(Model model) {
         model.addAttribute("articles", articleService.getAllArticles());
+        model.addAttribute("article", new Article());
         return "article";
     }
 
+    @RequestMapping(value = "/createArticle", method = RequestMethod.POST)
+    public String createArticle(@ModelAttribute Article article, BindingResult errors, Model model) {
+        articleService.addArticle(article);
+        return greeting(model);
+    }
+    
 }

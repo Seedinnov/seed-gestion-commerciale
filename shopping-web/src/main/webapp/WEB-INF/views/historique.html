@@ -26,7 +26,7 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="/index">Navbar</a>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -61,47 +61,14 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Date de commande</th>
-                                <th scope="col">Nombre de produits</th>
-                                <th scope="col">Prix</th>
                                 <th scope="col">Acheteur</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">15F002</th>
-                                <td>14/03/2018</td>
-                                <td>30</td>
-                                <td>3000</td>
-                                <td>xfactor</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">15F0g2</th>
-                                <td>14/03/2018</td>
-                                <td>35</td>
-                                <td>3005</td>
-                                <td>xfactor</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">15F002</th>
-                                <td>14/03/2018</td>
-                                <td>35</td>
-                                <td>3005</td>
-                                <td>xfactor</td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">15F002</th>
-                                <td>14/03/2018</td>
-                                <td>50</td>
-                                <td>3005</td>
-                                <td>xfactor</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">120rg2</th>
-                                <td>14/03/2018</td>
-                                <td>502</td>
-                                <td>200</td>
-                                <td>Mdeplacr</td>
+                            <tr th:each="selling: ${sellings}">
+                                <th scope="row" th:text="${selling.id}"></th>
+                                <td th:text="${#dates.format(selling.date, 'dd-MM-yyyy HH:mm')}" />
+                                <td th:text="${selling.client}" />
                             </tr>
                         </tbody>
                     </table>
@@ -118,47 +85,14 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Date de commande</th>
-                                <th scope="col">Nom de produits</th>
-                                <th scope="col">Prix unitaire</th>
-                                <th scope="col">Quantité </th>
+                                <th scope="col">Fournisseur</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">15F002</th>
-                                <td>14/03/2018</td>
-                                <td>nom de produits</td>
-                                <td>3000</td>
-                                <td>305</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">15F0g2</th>
-                                <td>14/03/2018</td>
-                                <td>nom de produits</td>
-                                <td>3005</td>
-                                <td>305</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">15F002</th>
-                                <td>14/03/2018</td>
-                                <td>nom de produits</td>
-                                <td>3005</td>
-                                <td>305</td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">15F002</th>
-                                <td>14/03/2018</td>
-                                <td>nom de produits</td>
-                                <td>3005</td>
-                                <td>305</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">120rg2</th>
-                                <td>14/03/2018</td>
-                                <td>tomates</td>
-                                <td>200</td>
-                                <td>305</td>
+                            <tr th:each="buying: ${buyings}">
+                                <th scope="row" th:text="${buying.id}"></th>
+                                <td th:text="${#dates.format(buying.date, 'dd-MM-yyyy HH:mm')}" />
+                                <td th:text="${buying.provider}" />
                             </tr>
                         </tbody>
                     </table>

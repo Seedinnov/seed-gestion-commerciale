@@ -5,6 +5,9 @@
  */
 package com.seed.shopping.web.ctrl;
 
+import com.seed.shopping.service.contract.BuyingService;
+import com.seed.shopping.service.contract.SellingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +19,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HistoryController {
     
+    @Autowired
+    private BuyingService buyingService;
+    @Autowired
+    private SellingService sellingService;
+    
     @GetMapping("/historique")
     public String greeting(Model model) {
+        model.addAttribute("buyings", buyingService.getAllBuyings());
+        model.addAttribute("sellings", sellingService.getAllSellings());
         return "historique";
     }
     

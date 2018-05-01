@@ -23,7 +23,6 @@ public class CommandCtrl {
     
     @GetMapping("/commande")
     public String greeting(Model model) {
-        model.addAttribute("buyings", buyingService.getAllBuyings());
         return "commande";
     }
     
