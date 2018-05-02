@@ -38,6 +38,14 @@ public interface ArticleService {
     List<Article> findByName(String name);
 
     /**
+     * Recherche un article à partir de son id
+     *
+     * @param articleId
+     * @return
+     */
+    Article findById(Integer articleId);
+
+    /**
      * Ajoute dans le stock de l'article dont l'id est fourni avec la valeur
      * associée
      *

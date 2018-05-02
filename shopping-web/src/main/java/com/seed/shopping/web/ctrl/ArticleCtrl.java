@@ -33,7 +33,7 @@ public class ArticleCtrl {
         return "article";
     }
 
-    @RequestMapping(value = "/createArticle", method = RequestMethod.POST)
+    @RequestMapping(value = "/article/create", method = RequestMethod.POST)
     public String createArticle(@ModelAttribute Article article, BindingResult errors, Model model) {
         articleService.addArticle(article);
         return greeting(model);

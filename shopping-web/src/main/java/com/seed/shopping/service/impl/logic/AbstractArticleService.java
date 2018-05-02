@@ -21,8 +21,6 @@ public abstract class AbstractArticleService implements ArticleService {
 
     public abstract void create(Article article);
 
-    public abstract Article findById(Integer articleId);
-
     @Override
     public List<Article> getAllArticles() {
         return findAll();
