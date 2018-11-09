@@ -9,8 +9,8 @@ import com.seed.shopping.model.Article;
 import com.seed.shopping.repo.ArticleRepository;
 import com.seed.shopping.service.impl.logic.AbstractArticleService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,7 +40,8 @@ public class ArticleJpaService extends AbstractArticleService {
 
     @Override
     public Article findById(Integer articleId) {
-        return articleRepository.findOne(articleId);
+        Optional<Article> findById = articleRepository.findById(articleId);
+        return findById.isPresent() ? findById.get() : null;
     }
 
     @Override
